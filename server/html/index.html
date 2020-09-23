@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    </style>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=BVSTAhGEspX0NXVFe8ZeDHrbIcE3Kmk3"></script>
+	<script type="text/javascript" src="https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+	
+	<!--Use your own ip here-->
+	<script src="http://192.168.1.117:8080/socket.io/socket.io.js"></script>
+    <title>Acute</title>
+	<style type="text/css">
+		ul,li{list-style: none;margin:0;padding:0;float:left;}
+		html{height:100%}
+		body{height:100%;margin:0px;padding:0px;font-family:"微软雅黑";}
+		#allmap{height:700px;width:100%;}
+		#r-result{width:100%;}
+    </style>
+</head>
+<body>
+	<div id="allmap"></div>
+	<div id="r-result">
+		<input type="button"  onclick="openHeatmap();" value="show heatmap"/>
+		<input type="button"  onclick="closeHeatmap();" value="close heatmap"/>
+	</div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	//Use your own ip here
+	const socket = io.connect('http://192.168.1.117:8080/')
+	
+	//Create map instance
+	var map = new BMap.Map("allmap");    
+
+	var isShowingCur = true;
+	var isShowingHeatMap = false;
+
+	map.centerAndZoom(new BMap.Point(116.400244,39.92556), 12);
+	 
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));	  
+	map.setCurrentCity("北京");    
+	map.enableScrollWheelZoom(true);	
+	
+	if(!isSupportCanvas()){
+    	alert('browser does not support')
+    }
+	
+	
+	sendBound();
+	
+	//Data is requested per 3 seconds
+	setInterval(sendBound,3000);
+	
+	//Data is requested when zoomend
+	map.addEventListener("zoomend",sendBound());
+		
+	//Data is requested when moveend
+	map.addEventListener("moveend",sendBound());
+
+	socket.on('packets', (...msgs) => {
+
+		var data_info = msgs[0];
+		console.log("packets"+data_info);
+		
+		map.clearOverlays();
+
+		//add new overlays
+		var jsonArray = new Array();
+		
+		for(var i=0;i<data_info.length;i++){
+			
+			var jsonObj = new Object();
+			jsonObj.lng = data_info[i][0];
+			jsonObj.lat = data_info[i][1];
+			jsonObj.count = data_info[i][2];
+			jsonArray.push(jsonObj);
+
+			var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1])); 
+			var tempLabel = "Temp:" + parseFloat(data_info[i][2]).toFixed(2);	
+			var label = new BMap.Label(tempLabel,{offset:new BMap.Size(20,-10)}); 
+			marker.setLabel(label);
+			map.addOverlay(marker);              
+
+			(function(){
+				var curSocketID = data_info[i][3];
+				console.log(curSocketID);
+                marker.addEventListener('click', function(){
+                    window.open("realtimeCurve.html?socketID="+curSocketID, "_blank", "height=400, width=800,top=0,left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                });   
+            })();
+		}
+		
+		heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":30});
+		map.addOverlay(heatmapOverlay);
+
+		if(isShowingHeatMap){
+			openHeatmap();
+		}else {
+			closeHeatmap();
+		}
+		heatmapOverlay.setDataSet({data:jsonArray,max:22});
+		
+	});
+
+	socket.on('locationsInBound',(...msgs) => {
+		var locations = msgs[0];
+		console.log(locations.length);
+	
+		map.clearOverlays();
+
+		for(var i=0;i<locations.length;i++){
+			var lng = locations[i].lng;
+			var lat = locations[i].lat;
+			var marker = new BMap.Marker(new BMap.Point(lng,lat));
+			map.addOverlay(marker);              
+
+		}
+	});
+	
+	//Get map range
+	function getBound(){
+		var bs = map.getBounds();  
+		var bssw = bs.getSouthWest();   
+		var bsne = bs.getNorthEast();   
+
+		var boundJson = new Object();
+		boundJson.swLng = bssw.lng;
+		boundJson.swLat = bssw.lat;
+		boundJson.neLng = bsne.lng;
+		boundJson.neLat = bsne.lat;
+
+		return boundJson;
+	}
+	
+	
+	function sendBound() {
+		if(isShowingCur){
+			socket.emit('bound',getBound())
+		}else{
+			socket.emit("history",getBound());
+		}
+	}
+	
+	function deletePoint(){
+		var allOverlay = map.getOverlays();
+		for (var i = 0; i < allOverlay.length -1; i++){
+				map.removeOverlay(allOverlay[i]);
+		}
+	}
+	
+	
+	function openHeatmap(){
+		isShowingHeatMap = true
+        heatmapOverlay.show();
+    }
+	function closeHeatmap(){
+		isShowingHeatMap = false;
+        heatmapOverlay.hide();
+    }
+	
+	function showHistory(){
+		isShowingCur = false;
+		sendBound();
+	}
+
+	function showCurrent() {
+		isShowingCur = true;
+		sendBound();
+	}
+	
+	function setGradient(){
+     	/*The format is as follows:
+		{
+	  		0:'rgb(102, 255, 0)',
+	 	 	.5:'rgb(255, 170, 0)',
+		  	1:'rgb(255, 0, 0)'
+		}*/
+     	var gradient = {};
+     	var colors = document.querySelectorAll("input[type='color']");
+     	colors = [].slice.call(colors,0);
+     	colors.forEach(function(ele){
+			gradient[ele.getAttribute("data-key")] = ele.value; 
+     	});
+        heatmapOverlay.setOptions({"gradient":gradient});
+    }
+	
+	function isSupportCanvas(){
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }
+
+</script>

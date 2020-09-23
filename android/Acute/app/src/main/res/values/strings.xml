@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AcuTe2</string>
+
+    <string name="help">=====introduce=====\n
+The app uses the distance difference between speakers and two microphones and the sound speed to estimate the temperature.\n\t
+This app can view real-time temperature, real-time peek frequency and real-time FFT.\n
+Temperature is obtained by formula :\nc*c = α*Temp f = dB/cT\nc:the speed of voice\n
+B: fmax - fmin,the bandwidth of chirp signal\n
+d: speaker to two-Microphone distance difference\n
+T: the duration of chirp signal\nf: the peek frequency of mixed power spectrum\n
+α = 403 are two constants.\n
+All variables can be set in settings.Parameter d can be calibrated in calibration.\n
+Matters need attenetion!\n
+1.The volume should be as low as possible\n
+2.Test in an open and quiet place,especially when calibrating parameter d\n</string>
+</resources>

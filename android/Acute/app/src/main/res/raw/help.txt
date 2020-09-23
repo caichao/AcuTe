@@ -1,0 +1,14 @@
+=====introduce=====\n\t
+The app uses the distance difference between speakers and two microphones and the sound speed to estimate the temperature.\n\t
+This app can view real-time temperature, real-time peek frequency and real-time FFT.\n
+Temperature is obtained by formula :\n\t\t\tTemp = Bd/λfT - c0/λ\n\t
+B: fmax - fmin,the bandwidth of chirp signal\n
+d: speaker to two-Microphone distance difference\n
+T: the duration of chirp signal\n
+f: the peek frequency of mixed power spectrum\n
+λ = 0.606 and c0 = 331 are two constants.\n
+All variables can be set in setting\n\n
+Matters need attenetion!\n
+1.The volume should be as low as possible\n
+2.Test in an open and quiet place\n
+

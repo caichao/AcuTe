@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="speaker to two-Microphone distance difference"
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right" />
+
+                <EditText
+                    android:id="@+id/d"
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_background"
+                    android:layout_columnSpan="2"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="0.1523"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:text="points of FFT"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/fftPoints"
+                    android:background="@drawable/edit_background"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="524288"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:text="sampling rate of speaker"
+                    android:textSize="15sp" />
+                <EditText
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/fsParam"
+                    android:background="@drawable/edit_background"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="48000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:text="duration of chirp"
+                    android:textSize="15sp" />
+                <EditText
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/durationParam"
+                    android:background="@drawable/edit_background"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="0.1"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:text="initial frequency of chirp"
+                    android:textSize="15sp" />
+                <EditText
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/fminParam"
+                    android:background="@drawable/edit_background"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="1000"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:text="end frequency of chirp"
+                    android:textSize="15sp" />
+                <EditText
+                    android:layout_width="0.0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/fmaxParam"
+                    android:background="@drawable/edit_background"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="21000"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="距离差:"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="5"
+                    android:background="@drawable/edit_background"
+                    android:digits="1234567890.+-*/%\n()"
+                    android:text="0.1523"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="fs:"
+                    android:textSize="20sp"/>
+                <EditText
+                    android:id="@+id/fsParam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_background"
+                    android:text="48000"
+                    android:textSize="20sp"
+                    android:digits="1234567890.+-*/%\n()"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="duration："
+
+                    android:layout_weight="1"
+                    android:textSize="20sp"/>
+                <EditText
+                    android:id="@+id/durationParam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/edit_background"
+                    android:layout_weight="2"
+                    android:text="0.1"
+                    android:textSize="20sp"
+                    android:digits="1234567890.+-*/%\n()"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="fmin："
+                    android:textSize="20sp"/>
+                <EditText
+                    android:id="@+id/fminParam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_background"
+                    android:text="1000"
+                    android:textSize="20sp"
+                    android:digits="1234567890.+-*/%\n()"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="fmax:"
+                    android:textSize="20sp"/>
+                <EditText
+                    android:id="@+id/fmaxParam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_background"
+                    android:text="11000"
+                    android:textSize="20sp"
+                    android:digits="1234567890.+-*/%\n()"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="fft points："
+                    android:textSize="20sp"/>
+                <EditText
+                    android:id="@+id/fftPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="5"
+                    android:background="@drawable/edit_background"
+                    android:text="524288"
+                    android:textSize="20sp"
+                    android:digits="1234567890.+-*/%\n()"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        -->
+
+    </ScrollView>
+</LinearLayout>
