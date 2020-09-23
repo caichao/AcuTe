@@ -5,7 +5,8 @@ The files under android are for Android-side application, written purely in Java
 
 copyright:
 
-```You may use, copy, reproduce, and distribute this Software for any non-commercial
+```
+You may use, copy, reproduce, and distribute this Software for any non-commercial
 purpose, subject to the restrictions in this NTUITIVE-LA. Some purposes which can be
 non-commercial are teaching, academic research, public demonstrations and personal
 experimentation. You may also distribute this Software with books or other teaching
