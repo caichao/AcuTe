@@ -3,6 +3,9 @@ Temperature is significant for many applications such as weather forecasting, pr
 
 The files under android are for Android-side application, written purely in Java. The files under server are for server-side display, using node.js. 
 
+[1] For android app, the minimum required os version is Android KitKat 4.4.0. The following pictures shown some snapshots of this application. 
+
+
 copyright:
 
 ```
