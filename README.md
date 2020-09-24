@@ -7,8 +7,44 @@ Below is a short video demo for this project.
 
 <div align=center><img src="pics/show.gif" width="50%" height="50%"/></div>
 
-[1] For android app, the minimum required os version is Android KitKat 4.4.0. The following pictures shown some snapshots of this application. 
+For android app, the minimum required os version is Android KitKat 4.4.0. The following pictures shown some snapshots of this application. 
 
+The following is the menu for setting: 
+
+<div align=center><img src="pics/menu.jpg" width="50%" height="50%"/></div>
+
+The first thing to do is to configure the parameters for sensing. The speaker to microphone distance difference should be calibrated at known temperature. This app provoides only one-point application. More points are preferable and can improve accuracy. The higher the sampling rate, the better the stability of the sensing system. 
+
+<div align=center><img src="pics/parameter.jpg" width="50%" height="50%"/></div>
+
+The calibration page only needs to input current temperature.
+
+<div align=center><img src="pics/calibration.jpg" width="50%" height="50%"/></div>
+
+The calibration page only needs to input current temperature.
+
+<div align=center><img src="pics/calibration.jpg" width="50%" height="50%"/></div>
+
+Real-time frequency spectrum for debug. 
+
+<div align=center><img src="pics/frequency.jpg" width="50%" height="50%"/></div>
+
+Extracted peak value for debug. 
+
+<div align=center><img src="pics/frequency_peek.jpg" width="50%" height="50%"/></div>
+
+
+If you find this useful, please cite our paper
+
+```
+@inproceedings{AcuTe,
+author = {Chao, Cai and Zhe, Chen and Hengling, Pu and Liyuan, Ye and Menglan, Hu and Jun, Luo},
+title = "{AcuTe: Acoustic Thermometer Empowered by a Single Smartphone}",
+year = {2020},
+booktitle = {Proc. of ACM SenSys}, 
+pages = {1-14}
+}
+```
 
 
 copyright:
