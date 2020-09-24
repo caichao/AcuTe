@@ -3,7 +3,9 @@ Temperature is significant for many applications such as weather forecasting, pr
 
 The files under android are for Android-side application, written purely in Java. The files under server are for server-side display, using node.js. 
 Below is a short video demo for this project. 
-<img src="pics/show.gif" width="50%" height="50%">
+
+
+<div align=center><img src="pics/show.gif" width="50%" height="50%"/></div>
 
 [1] For android app, the minimum required os version is Android KitKat 4.4.0. The following pictures shown some snapshots of this application. 
 
