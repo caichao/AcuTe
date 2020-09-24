@@ -21,9 +21,9 @@ The calibration page only needs to input current temperature.
 
 <div align=center><img src="pics/calibration.jpg" width="50%" height="50%"/></div>
 
-The calibration page only needs to input current temperature.
+Real-Time temperature data over time.
 
-<div align=center><img src="pics/calibration.jpg" width="50%" height="50%"/></div>
+<div align=center><img src="pics/temperature.jpg" width="50%" height="50%"/></div>
 
 Real-time frequency spectrum for debug. 
 
