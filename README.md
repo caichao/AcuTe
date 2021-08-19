@@ -46,6 +46,17 @@ pages = {1-14}
 }
 ```
 
+Our updated version - AcuTe+ that allows temperature sensing under severe interference can be found in the follow paper. 
+
+```
+@article{AcuTePlus,
+author = {Chao, Cai and Hengling, Pu and Peng, Wang and Jun, Luo},
+title = "{Active Acoustic Sensing for Hearing Temperature under Acoustic Interference}",
+year = {2021},
+journal = {IEEE Transactions on Mobile Computing}, 
+pages = {1-14}
+}
+```
 
 copyright:
 
